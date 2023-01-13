@@ -17,7 +17,7 @@ const SidebarNav = () => {
     }
 
     return (
-        <div className="overflow-auto flex-1">
+        <div className="flex-1 sidebar__nav">
             <div className="dark:text-zinc-400 flex flex-col items-start justify-start gap-3">
                 {SideNavData.map((item, index) => {
                     return <>
