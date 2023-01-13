@@ -15,6 +15,12 @@ export const SideNavData = [
             { label: "# appointments" },
             { label: "# frontend" },
             { label: "# production" },
+            { label: "# exercise" },
+            { label: "# ideas" },
+            { label: "# family" },
+            { label: "# meetings" },
+            { label: "# backend" },
+            { label: "# office" },
         ],
         name: "channels"
     },
@@ -23,7 +29,10 @@ export const SideNavData = [
         hasChildren: true,
         children: [
             { label: "⚽ goal2023" },
-            { label: "🗒️ todos" }
+            { label: "🗒️ todos" },
+            { label: "✏️ exams" },
+            { label: "💵 money" },
+            { label: "🏋️‍♀️ gym" },
         ],
         name: "targets"
     },
