@@ -1,8 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 
-export interface ICalender {
-    date: Date
-    setDate: Dispatch<SetStateAction<Date>>
+export interface ISidebarNav {
     selectedDate: Date
     setSelectedDate: Dispatch<SetStateAction<Date>>
 }

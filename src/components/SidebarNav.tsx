@@ -1,12 +1,15 @@
-import React, { useState, FC, Fragment } from 'react'
+import React, { useState, FC, Fragment, ReactElement } from 'react'
 import { SideNavData } from '../data/SideNavData'
 import { Children } from '../types/SideNavDataType'
 import { v4 as uuidv4 } from "uuid"
+import { ISidebarNav } from './interfaces/ISidebarNav'
 
-const SidebarNav = () => {
+const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
+    const { selectedDate, setSelectedDate } = props
     const [showChannels, setShowChannels] = useState<boolean>(false)
     const [showTargets, setShowTargets] = useState<boolean>(false)
     const [showCalender, setShowCalender] = useState<boolean>(true)
+    const [date, setDate] = useState<Date>(new Date())
 
     const handleClick = (toggleMenu: boolean, name = "") => {
         if (toggleMenu) {
@@ -46,7 +49,7 @@ const SidebarNav = () => {
                             </>}
                         </div>
 
-                        {(item.name === "channels" && showChannels || item.name === "targets" && showTargets || item.name === "calender" && showCalender) && (typeof item.children === "function" ? <item.children /> :
+                        {(item.name === "channels" && showChannels || item.name === "targets" && showTargets || item.name === "calender" && showCalender) && (typeof item.children === "function" ? <item.children selectedDate={selectedDate} setSelectedDate={setSelectedDate} date={date} setDate={setDate} /> :
                             <div className="flex flex-col items-start justify-start gap-3 ml-9">
                                 {(item.children as Children[])?.map((item) => {
                                     return <button key={uuidv4()}>{item.label} </button>

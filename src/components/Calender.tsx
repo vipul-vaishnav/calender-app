@@ -5,8 +5,7 @@ import CalenderHeader from './CalenderHeader'
 import CalenderBody from './CalenderBody'
 
 const Calender: FC<ICalender> = (props): ReactElement => {
-  const [date, setDate] = useState<Date>(new Date())
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const { selectedDate, setSelectedDate, date, setDate } = props
 
   return (
     <section className="w-full">
