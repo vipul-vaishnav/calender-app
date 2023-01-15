@@ -1,6 +1,7 @@
-import React, { useState, FC } from 'react'
+import React, { useState, FC, Fragment } from 'react'
 import { SideNavData } from '../data/SideNavData'
 import { Children } from '../types/SideNavDataType'
+import { v4 as uuidv4 } from "uuid"
 
 const SidebarNav = () => {
     const [showChannels, setShowChannels] = useState<boolean>(true)
@@ -20,9 +21,9 @@ const SidebarNav = () => {
     return (
         <div className="flex-1 sidebar__nav">
             <div className="dark:text-zinc-400 flex flex-col items-start justify-start gap-3">
-                {SideNavData.map((item, index) => {
-                    return <>
-                        <div key={index} className="group flex items-center justify-between w-full">
+                {SideNavData.map((item) => {
+                    return <Fragment key={uuidv4()}>
+                        <div className="group flex items-center justify-between w-full">
                             <button onClick={() => handleClick(item.hasChildren, item.name)} className="flex items-center gap-2 justify-start">
                                 {item.hasChildren && <div className={`${(item.name === "channels" && showChannels) || (item.name === "targets" && showTargets) || (item.name === "calender" && showCalender) ? "rotate-90" : ""}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -47,10 +48,8 @@ const SidebarNav = () => {
 
                         {(item.name === "channels" && showChannels || item.name === "targets" && showTargets || item.name === "calender" && showCalender) && (typeof item.children === "function" ? <item.children /> :
                             <div className="flex flex-col items-start justify-start gap-3 ml-9">
-                                {(item.children as Children[])?.map((item, idx) => {
-                                    return <>
-                                        <button key={idx}>{item.label}</button>
-                                    </>
+                                {(item.children as Children[])?.map((item) => {
+                                    return <button key={uuidv4()}>{item.label}</button>
                                 })}
                                 {item.name === "channels" &&
                                     <button>➕ Add Channel</button>
@@ -60,7 +59,7 @@ const SidebarNav = () => {
                                 }
                             </div>)
                         }
-                    </>
+                    </Fragment>
                 })}
             </div>
         </div >
