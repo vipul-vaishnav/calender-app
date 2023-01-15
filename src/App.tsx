@@ -5,15 +5,11 @@ import SidebarNav from './components/SidebarNav'
 import { Toaster } from 'react-hot-toast'
 
 const App: FC = (): ReactElement => {
-  const [colorTheme, setColorTheme] = useState<string | undefined>(undefined)
-
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
-      setColorTheme("dark");
     } else {
       document.documentElement.classList.add('light')
-      setColorTheme("light")
     }
   }, [])
 
@@ -23,24 +19,20 @@ const App: FC = (): ReactElement => {
         document.documentElement.classList.remove('light');
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        setColorTheme('dark');
       } else {
         document.documentElement.classList.remove('dark');
         document.documentElement.classList.add('light');
         localStorage.setItem('theme', 'light');
-        setColorTheme('light');
       }
     } else {
       if (document.documentElement.classList.contains('dark')) {
         document.documentElement.classList.remove('dark');
         document.documentElement.classList.add('light');
         localStorage.setItem('theme', 'light');
-        setColorTheme('light');
       } else {
         document.documentElement.classList.remove('light');
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        setColorTheme('dark');
       }
     }
   };
@@ -52,11 +44,10 @@ const App: FC = (): ReactElement => {
           <section className="w-72 flex flex-col justify-between justify-items-start gap-6 p-3">
             <SidebarHeader />
             <SidebarNav />
-            <Switch theme={colorTheme} toggleTheme={handleModeChange} />
+            <Switch toggleTheme={handleModeChange} />
           </section>
           <section className="flex-1 p-3 bg-zinc-200 dark:bg-zinc-800">
             <div className="overflow-auto h-full">
-              <button onClick={handleModeChange}>change</button>
             </div>
           </section>
         </div>

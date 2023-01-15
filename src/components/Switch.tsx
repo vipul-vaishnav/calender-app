@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react'
 import { ISwitch } from './interfaces/ISwitch'
 
 const Switch: FC<ISwitch> = (props): ReactElement => {
-    const { theme = "light", toggleTheme } = props;
+    const { toggleTheme } = props;
 
     return (
         <footer className="w-full bg-zinc-200 dark:bg-zinc-800 p-3 rounded-lg flex items-center justify-between gap-3 transition-all duration-300">
