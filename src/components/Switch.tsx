@@ -12,7 +12,7 @@ const Switch: FC<ISwitch> = (props): ReactElement => {
                 </svg>
             </div>
 
-            <button onClick={toggleTheme} className="h-7 w-14 dark:bg-white bg-darkbg rounded-full flex items-center justify-start dark:justify-end px-1 shadow-inner transition-all duration-300">
+            <button onClick={toggleTheme} className="h-7 w-14 bg-white dark:bg-darkbg rounded-full flex items-center justify-start dark:justify-end px-1 shadow-inner transition-all duration-300">
                 <div className="w-5 aspect-square bg-indigo-600 rounded-full"></div>
             </button>
 
