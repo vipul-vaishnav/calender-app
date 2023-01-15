@@ -2,6 +2,7 @@ import React, { FC, ReactElement, useEffect, useState } from 'react'
 import SidebarHeader from './components/SidebarHeader'
 import Switch from './components/Switch'
 import SidebarNav from './components/SidebarNav'
+import { Toaster } from 'react-hot-toast'
 
 const App: FC = (): ReactElement => {
   const [colorTheme, setColorTheme] = useState<string | undefined>(undefined)
@@ -45,20 +46,23 @@ const App: FC = (): ReactElement => {
   };
 
   return (
-    <div className="font-default w-full h-screen text-base bg-white text-zinc-900 dark:text-white dark:bg-darkbg p-3 transition-all duration-200">
-      <div className="h-full border-2 border-zinc-300 dark:border-zinc-700 rounded-2xl overflow-hidden flex transition-all duration-200">
-        <section className="w-72 flex flex-col justify-between justify-items-start gap-6 p-3">
-          <SidebarHeader />
-          <SidebarNav />
-          <Switch theme={colorTheme} toggleTheme={handleModeChange} />
-        </section>
-        <section className="flex-1 p-3 bg-zinc-200 dark:bg-zinc-800">
-          <div className="overflow-auto h-full">
-            <button onClick={handleModeChange}>change</button>
-          </div>
-        </section>
+    <>
+      <div className="font-default w-full h-screen text-base bg-white text-zinc-900 dark:text-white dark:bg-darkbg p-3 transition-all duration-200">
+        <div className="h-full border-2 border-zinc-300 dark:border-zinc-700 rounded-2xl overflow-hidden flex transition-all duration-200">
+          <section className="w-72 flex flex-col justify-between justify-items-start gap-6 p-3">
+            <SidebarHeader />
+            <SidebarNav />
+            <Switch theme={colorTheme} toggleTheme={handleModeChange} />
+          </section>
+          <section className="flex-1 p-3 bg-zinc-200 dark:bg-zinc-800">
+            <div className="overflow-auto h-full">
+              <button onClick={handleModeChange}>change</button>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
+      <Toaster />
+    </>
   )
 }
 
