@@ -47,7 +47,7 @@ const App: FC = (): ReactElement => {
   return (
     <div className="font-default w-full h-screen text-base bg-white text-zinc-900 dark:text-white dark:bg-darkbg p-3 transition-all duration-200">
       <div className="h-full border-2 border-zinc-300 dark:border-zinc-700 rounded-2xl overflow-hidden flex transition-all duration-200">
-        <section className="w-64 flex flex-col justify-between justify-items-start gap-6 p-3">
+        <section className="w-72 flex flex-col justify-between justify-items-start gap-6 p-3">
           <SidebarHeader />
           <SidebarNav />
           <Switch theme={colorTheme} toggleTheme={handleModeChange} />
