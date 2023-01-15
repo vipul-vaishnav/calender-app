@@ -23,7 +23,7 @@ const CalenderHeader: FC<ICalenderHeader> = (props): ReactElement => {
 
   return (
     <div className="flex items-center justify-between">
-      <h2>{format(date, "LLLL yyyy")}</h2>
+      <h2 className="font-medium text-zinc-900 dark:text-white">{format(date, "LLLL yyyy")}</h2>
 
       <div className="flex items-center gap-2">
         <button onClick={jumpToPrevMonth} className="dark:bg-zinc-800 bg-zinc-200 rounded-md p-1">
