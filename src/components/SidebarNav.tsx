@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import { SideNavData } from '../data/SideNavData'
+import { Children } from '../types/SideNavDataType'
 
 const SidebarNav = () => {
     const [showChannels, setShowChannels] = useState<boolean>(true)
     const [showTargets, setShowTargets] = useState<boolean>(true)
-    const [showCalender, setShowCalender] = useState<boolean>(true)
+    const [showCalender, setShowCalender] = useState<boolean>(false)
 
     const handleClick = (toggleMenu: boolean, name = "") => {
         if (toggleMenu) {
@@ -44,9 +45,9 @@ const SidebarNav = () => {
                             </>}
                         </div>
 
-                        {(item.name === "channels" && showChannels || item.name === "targets" && showTargets || item.name === "calender" && showCalender) &&
-                            < div className="flex flex-col items-start justify-start gap-3 ml-9">
-                                {item.children?.map((item, idx) => {
+                        {(item.name === "channels" && showChannels || item.name === "targets" && showTargets || item.name === "calender" && showCalender) && (typeof item.children === "function" ? <item.children /> :
+                            <div className="flex flex-col items-start justify-start gap-3 ml-9">
+                                {(item.children as Children[])?.map((item, idx) => {
                                     return <>
                                         <button key={idx}>{item.label}</button>
                                     </>
@@ -57,7 +58,7 @@ const SidebarNav = () => {
                                 {item.name === "targets" &&
                                     <button>➕ Add Target</button>
                                 }
-                            </div>
+                            </div>)
                         }
                     </>
                 })}

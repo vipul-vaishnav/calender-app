@@ -1,10 +1,11 @@
-export const SideNavData = [
+import Calender from "../components/Calender";
+import { SideNavDataType } from "../types/SideNavDataType";
+
+export const SideNavData: SideNavDataType = [
     {
         label: "📆 Calender",
         hasChildren: true,
-        children: [
-            { label: "Calendar" }
-        ],
+        children: Calender,
         name: "calender"
     },
     {
