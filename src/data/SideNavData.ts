@@ -12,16 +12,6 @@ export const SideNavData: SideNavDataType = [
         label: "#️⃣ Channels",
         hasChildren: true,
         children: [
-            { label: "# daily" },
-            { label: "# appointments" },
-            { label: "# frontend" },
-            { label: "# production" },
-            { label: "# exercise" },
-            { label: "# ideas" },
-            { label: "# family" },
-            { label: "# meetings" },
-            { label: "# backend" },
-            { label: "# office" },
         ],
         name: "channels"
     },
@@ -29,11 +19,11 @@ export const SideNavData: SideNavDataType = [
         label: "🎯 Target",
         hasChildren: true,
         children: [
-            { label: "⚽ goal2023" },
-            { label: "🗒️ todos" },
-            { label: "✏️ exams" },
-            { label: "💵 money" },
-            { label: "🏋️‍♀️ gym" },
+            // { label: "⚽ goal2023" },
+            // { label: "🗒️ todos" },
+            // { label: "✏️ exams" },
+            // { label: "💵 money" },
+            // { label: "🏋️‍♀️ gym" },
         ],
         name: "targets"
     },

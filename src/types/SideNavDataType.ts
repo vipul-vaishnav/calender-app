@@ -1,13 +1,14 @@
 import { ElementType } from "react"
 
 export type Children = {
+    id: string
     label: string
 }
 
 export type SideNavDataItem = {
     label: string
     hasChildren: boolean
-    name?: string
+    name?: "channels" | "targets" | "calender"
     icon?: string
     children?: ElementType | Children[]
 }

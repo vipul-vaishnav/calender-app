@@ -32,7 +32,7 @@ const CalenderBody: FC<ICalenderBody> = (props): ReactElement => {
   const handleClick = (x: number) => {
     const newDate = set_date(date, x);
     setSelectedDate(newDate)
-    toast.success("Date changed to " + format(newDate, "dd LLLL yyyy"))
+    toast.success("Date changed to " + format(newDate, "dd LLLL yyyy"), { style: { backgroundColor: "#22c55e", color: "white" }, icon: "☑️" })
   }
 
   return (

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid"
 import { ISidebarNav } from './interfaces/ISidebarNav'
 
 const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
-    const { selectedDate, setSelectedDate } = props
+    const { selectedDate, setSelectedDate, showModal } = props
     const [showChannels, setShowChannels] = useState<boolean>(false)
     const [showTargets, setShowTargets] = useState<boolean>(false)
     const [showCalender, setShowCalender] = useState<boolean>(true)
@@ -17,8 +17,12 @@ const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
             if (name === "calender") setShowCalender(prev => !prev)
             if (name === "targets") setShowTargets(prev => !prev)
         } else {
-            console.log("Clicked on new button")
+            console.log("Clicked on new event button")
         }
+    }
+
+    const handleAddButtonClick = (id: "channels" | "targets") => {
+        showModal(true)
     }
 
     return (
@@ -41,7 +45,7 @@ const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
                                 {item.label}
                             </button>
                             {(item.name === "channels" || item.name === "targets") && <>
-                                <button className='hidden group-hover:block'>
+                                <button onClick={() => handleAddButtonClick(item.name as "channels" | "targets")} className='hidden group-hover:block'>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                         <path fillRule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
                                     </svg>
@@ -55,10 +59,10 @@ const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
                                     return <button key={uuidv4()}>{item.label} </button>
                                 })}
                                 {item.name === "channels" &&
-                                    <button>➕ Add Channel</button>
+                                    <button onClick={() => { handleAddButtonClick(item.name as "channels") }}>➕ Add Channel</button>
                                 }
                                 {item.name === "targets" &&
-                                    <button>➕ Add Target</button>
+                                    <button onClick={() => { handleAddButtonClick(item.name as "targets") }}>➕ Add Target</button>
                                 }
                             </div>)
                         }
