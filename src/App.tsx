@@ -6,10 +6,15 @@ import { Toaster } from 'react-hot-toast'
 import { format } from 'date-fns'
 import Overlay from './components/Overlay'
 import Modal from './components/Modal'
+import { SideNavDataType } from './types/SideNavDataType'
+import { SideNavData } from './data/SideNavData'
+import { VIEW } from './constants/View'
 
 const App: FC = (): ReactElement => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const [sideNavData, setSideNavData] = useState<SideNavDataType>(SideNavData)
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [modalView, setModalView] = useState<VIEW | null>(null)
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -49,7 +54,7 @@ const App: FC = (): ReactElement => {
         <div className="h-full border-2 border-zinc-300 dark:border-zinc-700 rounded-2xl overflow-hidden flex transition-all duration-200">
           <section className="w-72 flex flex-col justify-between justify-items-start gap-6 p-3">
             <SidebarHeader />
-            <SidebarNav selectedDate={selectedDate} setSelectedDate={setSelectedDate} showModal={setShowModal} />
+            <SidebarNav selectedDate={selectedDate} setSelectedDate={setSelectedDate} showModal={setShowModal} sideNavData={sideNavData} setSideNavData={setSideNavData} setModalView={setModalView} />
             <Switch toggleTheme={handleModeChange} />
           </section>
           <section className="flex-1 p-3 bg-zinc-200 dark:bg-zinc-800">
@@ -62,11 +67,15 @@ const App: FC = (): ReactElement => {
         </div>
       </div>
       {showModal && <>
-        <Modal hideModal={setShowModal}>
-          <h1 className="font-semibold text-lg mb-4">Modal Title</h1>
+        <Modal hideModal={setShowModal} setModalView={setModalView}>
+          <h1 className="font-semibold text-lg mb-3">
+            {modalView === VIEW.CHANNELS && "Add new channel"}
+            {modalView === VIEW.TARGETS && "Add new target"}
+            {modalView === VIEW.EVENTS && "Add new event"}
+          </h1>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam eos rem iusto vero laudantium a, dignissimos esse quia temporibus fugiat odio quibusdam magnam dolor quo earum unde fugit, perspiciatis saepe eaque? Nihil laborum dolorum eum totam quibusdam maiores consectetur commodi, error autem, porro praesentium delectus ipsam quos tempora quisquam aliquam. Dignissimos, quibusdam! Dolorum recusandae iure, voluptates autem voluptate illum minima quidem nihil iusto corporis hic sunt inventore explicabo nam ducimus veritatis! Necessitatibus, officia omnis? Perferendis iste odio eligendi hic maiores. Aliquam a et, ab neque iste vero in voluptas odit, voluptate illo natus necessitatibus itaque. Totam reprehenderit cupiditate ab commodi aut autem in tenetur laborum, earum molestias quam eum nihil culpa similique dignissimos impedit placeat dicta quod nesciunt iure sapiente.
         </Modal>
-        <Overlay hideModal={setShowModal} />
+        <Overlay hideModal={setShowModal} setModalView={setModalView} />
       </>}
       <Toaster />
     </>

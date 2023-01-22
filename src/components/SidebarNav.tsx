@@ -3,9 +3,10 @@ import { SideNavData } from '../data/SideNavData'
 import { Children } from '../types/SideNavDataType'
 import { v4 as uuidv4 } from "uuid"
 import { ISidebarNav } from './interfaces/ISidebarNav'
+import { VIEW } from '../constants/View'
 
 const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
-    const { selectedDate, setSelectedDate, showModal } = props
+    const { selectedDate, setSelectedDate, showModal, sideNavData, setSideNavData, setModalView } = props
     const [showChannels, setShowChannels] = useState<boolean>(false)
     const [showTargets, setShowTargets] = useState<boolean>(false)
     const [showCalender, setShowCalender] = useState<boolean>(true)
@@ -17,18 +18,20 @@ const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
             if (name === "calender") setShowCalender(prev => !prev)
             if (name === "targets") setShowTargets(prev => !prev)
         } else {
-            console.log("Clicked on new event button")
+            setModalView(VIEW.EVENTS)
+            showModal(true)
         }
     }
 
     const handleAddButtonClick = (id: "channels" | "targets") => {
+        setModalView(id === "channels" ? VIEW.CHANNELS : VIEW.TARGETS)
         showModal(true)
     }
 
     return (
         <div className="flex-1 sidebar__nav">
             <div className="dark:text-zinc-400 flex flex-col items-start justify-start gap-3">
-                {SideNavData.map((item) => {
+                {sideNavData.map((item) => {
                     return <Fragment key={uuidv4()}>
                         <div className="group flex items-center justify-between w-full">
                             <button onClick={() => handleClick(item.hasChildren, item.name)} className="flex items-center gap-2 justify-start">
