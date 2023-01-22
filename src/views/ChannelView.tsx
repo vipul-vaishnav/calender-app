@@ -13,6 +13,16 @@ const ChannelView: FC<IChannelView> = (props): ReactElement => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (!title || title.trim().length === 0) {
+      toast.error("Please enter a title for channel", { style: { backgroundColor: "#be123c", color: "white" } })
+      return
+    } else if (title.length > 20) {
+      toast.error("Title should be of max 20 characters", { style: { backgroundColor: "#be123c", color: "white" } })
+      return
+
+    }
+
     setSideNavData(prev => {
       const item = prev.find(item => item.name === VIEW.CHANNELS)!
       const idx = prev.findIndex(item => item.name === VIEW.CHANNELS)
