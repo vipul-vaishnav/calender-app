@@ -2,7 +2,8 @@ import { ElementType } from "react"
 
 export type Children = {
     id: string
-    label: string
+    title: string
+    isPrivate?: boolean
 }
 
 export type SideNavDataItem = {

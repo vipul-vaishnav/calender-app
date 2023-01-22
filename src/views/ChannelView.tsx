@@ -2,20 +2,33 @@ import React, { ChangeEvent, FC, FormEvent, ReactElement, useState } from 'react
 import { IChannelView } from './interfaces/IChannelView'
 import { ChannelFormType } from '../types/ChannelFormType'
 import { toast } from 'react-hot-toast'
+import { v4 as uuidv4 } from "uuid"
+import { VIEW } from '../constants/View'
+import { Children, SideNavDataItem } from '../types/SideNavDataType'
 
-const ChannelView: FC<IChannelView> = (): ReactElement => {
+const ChannelView: FC<IChannelView> = (props): ReactElement => {
   const [formData, setFormData] = useState<ChannelFormType>({ title: "", isPrivate: false })
+  const { setSideNavData, hideModal } = props
   const { title, isPrivate } = formData
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
+    setSideNavData(prev => {
+      const item = prev.find(item => item.name === VIEW.CHANNELS)!
+      const idx = prev.findIndex(item => item.name === VIEW.CHANNELS)
+      const children = [{ id: uuidv4(), ...formData }, ...item?.children as Children[]]
+      const newItem: SideNavDataItem = { ...item, children: children }
+      const newData = prev
+      newData[idx] = newItem
+      return newData
+    })
     toast.success("New Channel Created!", {
       style: {
         backgroundColor: "#22c55e", color: "white"
       }, icon: "☑️"
     })
     setFormData({ title: "", isPrivate: false })
+    hideModal(false)
   }
 
   return (
