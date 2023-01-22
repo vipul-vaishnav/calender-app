@@ -9,6 +9,9 @@ import Modal from './components/Modal'
 import { SideNavDataType } from './types/SideNavDataType'
 import { SideNavData } from './data/SideNavData'
 import { VIEW } from './constants/View'
+import ChannelView from './views/ChannelView'
+import TargetView from './views/TargetView'
+import EventView from './views/EventView'
 
 const App: FC = (): ReactElement => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
@@ -68,12 +71,14 @@ const App: FC = (): ReactElement => {
       </div>
       {showModal && <>
         <Modal hideModal={setShowModal} setModalView={setModalView}>
-          <h1 className="font-semibold text-lg mb-3">
+          <h1 className="font-bold text-lg mb-3">
             {modalView === VIEW.CHANNELS && "Add new channel"}
             {modalView === VIEW.TARGETS && "Add new target"}
             {modalView === VIEW.EVENTS && "Add new event"}
           </h1>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam eos rem iusto vero laudantium a, dignissimos esse quia temporibus fugiat odio quibusdam magnam dolor quo earum unde fugit, perspiciatis saepe eaque? Nihil laborum dolorum eum totam quibusdam maiores consectetur commodi, error autem, porro praesentium delectus ipsam quos tempora quisquam aliquam. Dignissimos, quibusdam! Dolorum recusandae iure, voluptates autem voluptate illum minima quidem nihil iusto corporis hic sunt inventore explicabo nam ducimus veritatis! Necessitatibus, officia omnis? Perferendis iste odio eligendi hic maiores. Aliquam a et, ab neque iste vero in voluptas odit, voluptate illo natus necessitatibus itaque. Totam reprehenderit cupiditate ab commodi aut autem in tenetur laborum, earum molestias quam eum nihil culpa similique dignissimos impedit placeat dicta quod nesciunt iure sapiente.
+          {modalView === VIEW.CHANNELS && <ChannelView />}
+          {modalView === VIEW.TARGETS && <TargetView />}
+          {modalView === VIEW.EVENTS && <EventView />}
         </Modal>
         <Overlay hideModal={setShowModal} setModalView={setModalView} />
       </>}

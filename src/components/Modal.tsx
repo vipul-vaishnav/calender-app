@@ -4,7 +4,7 @@ import { IModal } from './interfaces/IModal'
 const Modal: FC<IModal> = (props): ReactElement => {
   const { children, hideModal, setModalView } = props
   return (
-    <div className="z-20 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-lg dark:bg-darkbg bg-white rounded-md p-6 overflow-auto max-h-screen dark:text-white shadow-2xl">
+    <div className="z-20 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-lg dark:bg-darkbg bg-white rounded-md p-6 overflow-auto max-h-screen dark:text-white shadow-2xl w-full">
       {children}
       <button onClick={() => {
         hideModal(false)
