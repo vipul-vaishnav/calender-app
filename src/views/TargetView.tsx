@@ -25,7 +25,15 @@ const TargetView: FC<ITargetView> = (props): ReactElement => {
       return
     }
 
-    console.log(formData)
+    setSideNavData(prev => {
+      const item = prev.find(item => item.name === VIEW.TARGETS)!
+      const idx = prev.findIndex(item => item.name === VIEW.TARGETS)
+      const children = [{ id: uuidv4(), ...formData }, ...item?.children as Children[]]
+      const newItem: SideNavDataItem = { ...item, children: children }
+      const newData = prev
+      newData[idx] = newItem
+      return newData
+    })
 
     toast.success("New target Created!", {
       style: {

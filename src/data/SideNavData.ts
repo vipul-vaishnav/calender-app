@@ -19,11 +19,6 @@ export const SideNavData: SideNavDataType = [
         label: "🎯 Target",
         hasChildren: true,
         children: [
-            // { label: "⚽ goal2023" },
-            // { label: "🗒️ todos" },
-            // { label: "✏️ exams" },
-            // { label: "💵 money" },
-            // { label: "🏋️‍♀️ gym" },
         ],
         name: "targets"
     },
