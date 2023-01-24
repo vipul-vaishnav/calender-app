@@ -1,9 +1,9 @@
 import React, { useState, FC, Fragment, ReactElement } from 'react'
-import { SideNavData } from '../data/SideNavData'
 import { Children } from '../types/SideNavDataType'
 import { v4 as uuidv4 } from "uuid"
 import { ISidebarNav } from './interfaces/ISidebarNav'
 import { VIEW } from '../constants/View'
+import { genIcon } from './helpers/genIcon'
 
 const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
     const { selectedDate, setSelectedDate, showModal, sideNavData, setSideNavData, setModalView } = props
@@ -59,7 +59,7 @@ const SidebarNav: FC<ISidebarNav> = (props): ReactElement => {
                         {(item.name === "channels" && showChannels || item.name === "targets" && showTargets || item.name === "calender" && showCalender) && (typeof item.children === "function" ? <item.children selectedDate={selectedDate} setSelectedDate={setSelectedDate} date={date} setDate={setDate} /> :
                             <div className="flex flex-col items-start justify-start gap-3 ml-9">
                                 {(item.children as Children[])?.map((x) => {
-                                    return <button key={uuidv4()}>{item.name === "channels" && "#"} {x.title} {x.isPrivate && "🔒"}</button>
+                                    return <button key={uuidv4()}>{item.name === "channels" ? "#" : genIcon(item.icon)} {x.title} {x.isPrivate && "🔒"}</button>
                                 })}
                                 {item.name === "channels" &&
                                     <button onClick={() => { handleAddButtonClick(item.name as "channels") }}>➕ Add Channel</button>

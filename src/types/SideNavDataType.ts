@@ -4,6 +4,7 @@ export type Children = {
     id: string
     title: string
     isPrivate?: boolean
+    icon?: string
 }
 
 export type SideNavDataItem = {

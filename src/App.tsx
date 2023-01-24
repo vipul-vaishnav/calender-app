@@ -77,7 +77,7 @@ const App: FC = (): ReactElement => {
             {modalView === VIEW.EVENTS && "Add new event"}
           </h1>
           {modalView === VIEW.CHANNELS && <ChannelView setSideNavData={setSideNavData} hideModal={setShowModal} />}
-          {modalView === VIEW.TARGETS && <TargetView />}
+          {modalView === VIEW.TARGETS && <TargetView setSideNavData={setSideNavData} hideModal={setShowModal} />}
           {modalView === VIEW.EVENTS && <EventView />}
         </Modal>
         <Overlay hideModal={setShowModal} setModalView={setModalView} />
