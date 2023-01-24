@@ -3,7 +3,6 @@ import SidebarHeader from './components/SidebarHeader'
 import Switch from './components/Switch'
 import SidebarNav from './components/SidebarNav'
 import { Toaster } from 'react-hot-toast'
-import { format } from 'date-fns'
 import Overlay from './components/Overlay'
 import Modal from './components/Modal'
 import { SideNavDataType } from './types/SideNavDataType'
@@ -12,6 +11,7 @@ import { VIEW } from './constants/View'
 import ChannelView from './views/ChannelView'
 import TargetView from './views/TargetView'
 import EventView from './views/EventView'
+import DashboardHeader from './components/DashboardHeader'
 
 const App: FC = (): ReactElement => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
@@ -62,9 +62,7 @@ const App: FC = (): ReactElement => {
           </section>
           <section className="flex-1 p-3 bg-zinc-200 dark:bg-zinc-800">
             <div className="overflow-auto h-full">
-              {format(selectedDate, "dd LLLL yyyy")}
-
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. A eaque consectetur debitis quis aut reiciendis exercitationem animi labore est architecto at sit corporis odit, quia dolorem assumenda esse dolorum quod voluptatibus vero corrupti totam modi eveniet harum? Eos numquam molestias iusto hic eum ipsa asperiores voluptates, vitae architecto quisquam et, ut officia placeat reprehenderit adipisci quos autem tempora porro illo tempore quae dolore rem quis expedita. Perspiciatis, saepe magni consequuntur ea quia et! Cupiditate aut eum magni eligendi officiis? Nisi quod repudiandae officiis nulla repellat optio deleniti tempora libero veritatis itaque suscipit id omnis neque natus, placeat, quo assumenda, beatae minus quaerat magnam. Cumque debitis pariatur delectus quidem assumenda perspiciatis nesciunt in provident dolorum culpa quae modi temporibus asperiores, saepe, veritatis vel minus. Suscipit cupiditate eum molestias quo, accusamus possimus cum ut ab delectus repellat provident sequi voluptate amet ratione aut nulla sunt, quisquam aliquid illum quod porro ex neque doloribus! Odit necessitatibus consequuntur ab laudantium cumque. Ea rem molestiae blanditiis corrupti numquam similique dignissimos consectetur praesentium ipsam enim! Obcaecati voluptates, asperiores vel dolorum eius illo aperiam? Tenetur minus dolorem deleniti obcaecati, quaerat, odit sunt animi rerum officia labore accusamus eum ex. Labore consequuntur harum voluptate dolor dolorum adipisci quod?
+              <DashboardHeader selectedDate={selectedDate} />
             </div>
           </section>
         </div>
@@ -74,11 +72,11 @@ const App: FC = (): ReactElement => {
           <h1 className="font-bold text-lg mb-3">
             {modalView === VIEW.CHANNELS && "Add new channel"}
             {modalView === VIEW.TARGETS && "Add new target"}
-            {modalView === VIEW.EVENTS && "Add new event"}
+            {modalView === VIEW.EVENTS && "Create an event"}
           </h1>
           {modalView === VIEW.CHANNELS && <ChannelView setSideNavData={setSideNavData} hideModal={setShowModal} />}
           {modalView === VIEW.TARGETS && <TargetView setSideNavData={setSideNavData} hideModal={setShowModal} />}
-          {modalView === VIEW.EVENTS && <EventView />}
+          {modalView === VIEW.EVENTS && <EventView hideModal={setShowModal} />}
         </Modal>
         <Overlay hideModal={setShowModal} setModalView={setModalView} />
       </>}
