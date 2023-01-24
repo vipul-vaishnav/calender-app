@@ -64,12 +64,12 @@ const TargetView: FC<ITargetView> = (props): ReactElement => {
               })
             }} className="w-full dark:bg-transparent dark:border-zinc-700 border-zinc-200 border-2 rounded-md py-2 px-4 outline-none" autoComplete='off' id="target-category">
               <option value="" disabled>Select a category</option>
-              <option value="goal">⚽ Goal</option>
-              <option value="todo">📝 Task</option>
-              <option value="health">🏋️ Health</option>
-              <option value="money">💵 Money</option>
-              <option value="study">✏️ Study</option>
-              <option value="project">🏢 Project</option>
+              <option value="goal" className="dark:bg-darkbg">⚽ Goal</option>
+              <option value="todo" className="dark:bg-darkbg">📝 Task</option>
+              <option value="health" className="dark:bg-darkbg">🏋️ Health</option>
+              <option value="money" className="dark:bg-darkbg">💵 Money</option>
+              <option value="study" className="dark:bg-darkbg">✏️ Study</option>
+              <option value="project" className="dark:bg-darkbg">🏢 Project</option>
             </select>
           </div>
         </div>
